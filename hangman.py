@@ -1,7 +1,27 @@
+
 import os
 
-class Hangman():
 
+def progress_updater(guess, the_word, progress):
+    i = 0
+    while i < len(the_word):
+        if guess == the_word[i]:
+            progress[i] = guess
+            i += 1
+        else:
+            if guess != the_word[i]:
+                progress[i] = the_word
+                print("_")
+                i += 1
+
+    return "".join(progress)
+
+
+def clear():
+    os.system("clear")
+
+
+class Hangman:
     def __init__(self):
         print("Welcome to 'Hangman', are you ready to die?")
         print("(1)Yes, I'm ready to challenge death.\n(2)No, get me outta here!")
@@ -9,6 +29,7 @@ class Hangman():
 
         if user_choice_1 == '1':
             print("LOADING... IF YOU WANT TO SURVIVE YOU MUST FOLLOW THE NUMBERS...IF YOU DON'T YOU WILL DIE")
+            print("")
             self.start_game()
         elif user_choice_1 == '2':
             print("Bye bye Felicia...")
@@ -16,9 +37,6 @@ class Hangman():
         else:
             print("I'm sorry, I could not understand your dumb ass, can you repeat that?")
             self.__init__()
-
-    def clear(self):
-        os.system("clear")
 
     def start_game(self):
         print("1) I need to tell you a secret. Look at 5")
@@ -35,15 +53,14 @@ class Hangman():
         print("12) Sorry looser look at 8.")
         print("13) DEATH is faster then you think. To keep running look at 10.")
         print("14) I don't know how to say this so clearly so your dumb ass can undersand but look at 3.")
-        print("15) You must sacrifice your knowledge at this point, in order to live look at number 9.")
+        print("15) You must sacrifice your knowledge at this point, in order to live look at number 9.\n")
         self.core_game()
-
 
     def core_game(self):
         guesses = 0
         letters_used = []
         the_word = ['e', 's', 'c', 'a', 'p', 'e']
-        progress = ["_", "_", "_", "_", "_","_"]
+        progress = ["_", "_", "_", "_", "_", "_"]
 
         while guesses < 6:
             guess = input("Guess a letter ->")
@@ -72,58 +89,77 @@ class Hangman():
 
     def hangman_graphic(self, guesses):
         if guesses == 0:
-         print("________      ")
-         print("|      |      ")
-         print("|             ")
-         print("|             ")
-         print("|             ")
-         print("|             ")
+            print("________      ")
+            print("|      |      ")
+            print("|             ")
+            print("|             ")
+            print("|             ")
+            print("|             ")
         elif guesses == 1:
-         print("________      ")
-         print("|      |      ")
-         print("|      0      ")
-         print("|             ")
-         print("|             ")
-         print("|             ")
+            print("________      ")
+            print("|      |      ")
+            print("|      0      ")
+            print("|             ")
+            print("|             ")
+            print("|             ")
         elif guesses == 2:
-         print("________      ")
-         print("|      |      ")
-         print("|      0      ")
-         print("|     /       ")
-         print("|             ")
-         print("|             ")
+            print("________      ")
+            print("|      |      ")
+            print("|      0      ")
+            print("|     /       ")
+            print("|             ")
+            print("|             ")
         elif guesses == 3:
-         print("________      ")
-         print("|      |      ")
-         print("|      0      ")
-         print("|     /|      ")
-         print("|             ")
-         print("|             ")
+            print("________      ")
+            print("|      |      ")
+            print("|      0      ")
+            print("|     /|      ")
+            print("|             ")
+            print("|             ")
         elif guesses == 4:
-         print("________      ")
-         print("|      |      ")
-         print("|      0      ")
-         print("|     /|\     ")
-         print("|             ")
-         print("|             ")
+            print("________      ")
+            print("|      |      ")
+            print("|      0      ")
+            print("|     /|\     ")
+            print("|             ")
+            print("|             ")
         elif guesses == 5:
-         print("________      ")
-         print("|      |      ")
-         print("|      0      ")
-         print("|     /|\     ")
-         print("|     /       ")
-         print("|             ")
+            print("________      ")
+            print("|      |      ")
+            print("|      0      ")
+            print("|     /|\     ")
+            print("|     /       ")
+            print("|             ")
         else:
-         print("________      ")
-         print("|      |      ")
-         print("|      0      ")
-         print("|     /|\     ")
-         print("|     / \     ")
-         print("|             ")
-         print("Don't get too comfortable. It's not over until I say it is.")
-         print("Ding Dong welcome to the kingdom of hell")
-         print("GAME OVER!!!")
-         self.__init__()
+            print("________      ")
+            print("|      |      ")
+            print("|      0      ")
+            print("|     /|\     ")
+            print("|     / \     ")
+            print("|             ")
+            print("Don't get too comfortable. It's not over until I say it is.")
+            print("Ding Dong welcome to the kingdom of hell \n")
+            print(" 0000000   0000000   0000000000   00000000")
+            print("000000000  00000000  00000000000  00000000")
+            print("100        001  000  001 001 001  001")
+            print("101        101  010  101 101 101  101")
+            print("101 01010  01010101  011 110 010  0111:1")
+            print("111 11011  11101111  101   1 101  11111:")
+            print(":11   11:  11:  111  11:     11:  11:")
+            print(":1:   1::  :1:  1:1  :1:     :1:  :1:")
+            print(" ::: ::::  ::   :::  :::     ::    :: ::::")
+            print(" :: :: :    :   : :   :      :    : :: ::")
+            print(" 000000   000  000  00000000  0000000")
+            print("00000000  000  000  00000000  00000000")
+            print("001  000  001  000  001       001  000")
+            print("101  010  101  010  010       101  010")
+            print("010  101  010  101  0111:1    0101101")
+            print("010  111  101  111  11111:    110101")
+            print("11:  111  :1:  11:  11:       11: :11")
+            print(":1:  1:1   ::11:1   :1:       :1:  1:1")
+            print("::::: ::    ::::     :: ::::  ::   :::")
+            print(" : :  :      :      : :: ::    :   : : \n")
+            self.__replay__()
 
     def __replay__(self):
         print("Do you want to die again?")
@@ -140,17 +176,5 @@ class Hangman():
             print("I'm sorry, I could not understand your dumb ass, can you repeat that?")
             self.__init__()
 
-    def progress_updater(self, guess, the_word, progress):
-        i = 0
-        while i < len(the_word):
-            if guess == the_word[i]:
-                    progress[i] = guess
-                    i += 1
-            else:
-                    i+= 1
 
-        return"".join(progress)
-game =  Hangman()
-
-
-
+game = Hangman()
